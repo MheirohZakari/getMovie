@@ -24,7 +24,7 @@ const Home =()=>{
     :null
      }
      <Search setSearchTerm={setSearchTerm}/>
-     <Grid header={'popular movies'}/>
+     <Grid header={searchTerm ?'Here are your search results!':'popular movies'}>
      {
         state.results.map(movie =>
             <Thumb clickable
@@ -33,6 +33,7 @@ const Home =()=>{
             />
             )
      }
+     </Grid>
 
      </>
 )

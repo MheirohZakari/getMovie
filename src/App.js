@@ -2,7 +2,7 @@ import "./App.css";
 import { GlobalStyle } from './GlobalStyle';
 import Header from './Components/Header'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Home from "./Pages/Home";
+import Home from "./Pages/home";
 import Movie from "./Pages/Movie";
 import Notfound from "./Pages/Notfound";
 
