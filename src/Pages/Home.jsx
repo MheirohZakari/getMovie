@@ -5,15 +5,18 @@ import Search from "../Components/Search";
 import Grid from "../Components/Grid";
 import Banner from "../Components/Banner";
 import Thumb from "../Components/Thumbs";
+import  Spinner  from "../Components/Spinner";
 
 
 
 
 const Home =()=>{
-    const{state,error,searchTerm,setSearchTerm} =useHomeFetch();
+    const{state,error,loading,searchTerm,setSearchTerm} =useHomeFetch();
 
     if(error)return <div>Something went wrong!!</div>
-    return (
+        
+
+    return (       
     <>
      {!searchTerm && state.results[0] ?
      <Banner
@@ -24,7 +27,12 @@ const Home =()=>{
     :null
      }
      <Search setSearchTerm={setSearchTerm}/>
-     <Grid header={searchTerm ?'Here are your search results!':'popular movies'}>
+     
+     {loading &&
+     <Spinner/>
+    
+     }
+     <Grid header={searchTerm ?'Here are your search results!!':'popular movies'}>
      {
         state.results.map(movie =>
             <Thumb clickable
@@ -34,7 +42,8 @@ const Home =()=>{
             )
      }
      </Grid>
-
+     
+     
      </>
 )
     }
