@@ -8,9 +8,9 @@ import Thumb from "../Components/Thumbs";
 import  Spinner  from "../Components/Spinner";
 
 
-
-
 const Home =()=>{
+    
+
     const{state,error,loading,searchTerm,setSearchTerm} =useHomeFetch();
 
     if(error)return <div>Something went wrong!!</div>
@@ -42,10 +42,11 @@ const Home =()=>{
             )
      }
      </Grid>
+    
      
      
      </>
 )
-    }
+}
 
 export default Home;

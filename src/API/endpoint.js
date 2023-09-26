@@ -3,7 +3,7 @@ import {
     POPULAR_BASE_URL,
     API_URL,
     API_KEY,
-    REQUEST_TOKEN_URL,
+    REQUEST_TOKEN_URL,   
     LOGIN_URL,
     SESSION_ID_URL
   } from './config';
@@ -59,7 +59,7 @@ import {
         return sessionId;
       }
     },
-    rateMovie: async (sessionId, movieId, value) => {
+    rateMovie: async (sessionId,movieId,value) => {
       const endpoint = `${API_URL}movie/${movieId}/rating?api_key=${API_KEY}&session_id=${sessionId}`;
   
       const rating = await (
@@ -72,5 +72,6 @@ import {
       return rating;
     }
   };
+
   
   export default endpoint;

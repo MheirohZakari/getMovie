@@ -6,11 +6,15 @@ import searchIcon from '../../images/search-icon.svg';
 //styles
 import {Wrapper,Content} from './searchbar.styles';
 
+
 const Search = ({setSearchTerm}) => {
     const [state,setState] = useState('');
     const initial = useRef(true);
 
 
+    const onInputChange = function(event){
+        setState(event.target.value)
+    }
     useEffect(()=>{
         if(initial.current){
             initial.current = false;
@@ -21,7 +25,7 @@ const Search = ({setSearchTerm}) => {
         },500)
 
         return () => clearTimeout(timer);
-    },[setSearchTerm,state]);
+    },[state]);
 
     return (
         <Wrapper>
@@ -31,16 +35,16 @@ const Search = ({setSearchTerm}) => {
                 <input
                   type="text"
                   placeholder="Search Movie"
-                  onChange={event=>setState(event.currentTarget.value)}
+                  onChange={onInputChange}
                   value={state}
                 />
             </Content>
         </Wrapper>
-    );
+      
+);
        
-   
-}
 
+}
 
 
 export default Search;
