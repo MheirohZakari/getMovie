@@ -1,4 +1,5 @@
 import React, {useState,useEffect,useRef} from "react";
+import { actions } from "../../Hooks/useHomeFetch";
 
 //import
 import searchIcon from '../../images/search-icon.svg';
@@ -7,7 +8,7 @@ import searchIcon from '../../images/search-icon.svg';
 import {Wrapper,Content} from './searchbar.styles';
 
 
-const Search = ({setSearchTerm}) => {
+const Search = ({dispatch}) => {
     const [state,setState] = useState('');
     const initial = useRef(true);
 
@@ -21,7 +22,7 @@ const Search = ({setSearchTerm}) => {
             return;
         }
         const timer = setTimeout(()=>{
-            setSearchTerm(state);
+            dispatch({type:actions.movies_searchTerm,payload:state})
         },500)
 
         return () => clearTimeout(timer);

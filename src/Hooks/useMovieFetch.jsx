@@ -1,35 +1,53 @@
-import {useState, useEffect} from "react";
-import endpoint from "../API/endpoint";
+import {useState,useEffect} from 'react';
+import endpoints from '../API/endpoint';
 
+//Helpers
+// import { isPersistedState } from '../helpers';
 
+export const useMovieFetch = movieId =>{
+    const [state,setState] = useState({});
+    const [loading,setLoading] = useState(true);
+    const [error,setError] = useState(false);
+       
+    useEffect(()=>{
+        const fetchData = async () =>{
+            try{
+                setError(false);
 
-export const useMovieFetch = movieId => {
-    const [state, setState] = useState({});
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
-   
+                const movie = await endpoints.fetchMovie(movieId);
+                const credits = await endpoints.fetchCredits(movieId);
+                //Get directors only
+                const directors = credits.crew.filter(
+                    member=> member.job === 'Director'
+                );
+                
 
+                setState({
+                    ...movie,
+                    actors: credits.cast,
+                    directors
+                });
 
-  useEffect(() =>{
-    const fetchData = async () =>{
-        try{
-            setLoading(false)
-        const movie = await endpoint.fetchMovie(movieId);
-        setState(movie)
+                setLoading(false);
 
-        setLoading(false)
-
-        }catch(err){
-            setError(true)
-            console.log(err.message)
+            }catch(err){
+                setError(true);
+            }
         }
-  }
-  fetchData()
-},[movieId]
 
-    
-  )
-   
+        // const sessionState = isPersistedState(movieId);
+        // if(sessionState){
+            // setState(sessionState);
+            // setLoading(false);
+            // return;
+        // }
+        fetchData();
+    },[movieId]);
+
+    //Write to sessionStorage
+    useEffect(()=>{
+        sessionStorage.setItem(movieId,JSON.stringify(state));
+    },[movieId,state]);
 
     return {state,loading,error};
 }

@@ -1,6 +1,50 @@
-import { type } from "@testing-library/user-event/dist/type";
-import React, { useReducer } from "react";
-import { useState } from "react";
+
+// 
+// 
+// function   CounterContext (){
+    // const [counter, setCounter] = useState(0);
+
+    // return (
+        // <>
+        // {/* <Result counter = {counter} setCounter = {setCounter} /> */}
+
+        // {/* </> */}
+    
+// }
+// 
+// 
+// 
+// const Result = ({counter,setCounter}) => {
+// 
+    // return (
+        // <>
+{/*  */}
+{/*  */}
+        {/* <button onClick={() => setCounter((prev)=> prev +1)}>Add 1</button> */}
+        {/* <h1 style={{color:"black"}}>value={counter}</h1> */}
+{/*  */}
+{/*  */}
+        {/* </> */}
+    // )
+// 
+// }
+// 
+// 
+// export default CounterContext;
+// 
+
+
+
+
+
+
+
+
+
+
+// import { type } from "@testing-library/user-event/dist/type";
+// import React, { createContext, useReducer } from "react";
+// import { useState } from "react";
 // import {Content,Wrapper,Title} from "./flag.styles";
 
 
@@ -269,67 +313,78 @@ import { useState } from "react";
 
 
 
-const numReducer = (state, action) => {
-  const { type, payload } = action
-  switch (type) {
-    case 'firstNumber':
-      return { ...state, firstNumber: payload }    
-    case 'secondNumber':
-      return { ...state, secondNumber: payload }
-    case 'result': {
-      if (!state.firstNumber && !state.secondNumber && !state.operator) {
-        alert('Operation not possible!')
+// const numReducer = (state, action) => {
+// const { type, payload } = action
+// switch (type) {
+// case 'firstNumber':
+// return { ...state, firstNumber: payload }    
+// case 'secondNumber':
+// return { ...state, secondNumber: payload }
+// case 'result': {
+// if (!state.firstNumber && !state.secondNumber && !state.operator) {
+// alert('Operation not possible!')
+// 
+// return {...state}
+// }else return ({ ...state, result: calc(state.firstNumber, state.secondNumber, state.operator) })
+// }
+// 
+// case 'operator':
+// return { ...state, operator: payload }
+// }
+// }
+// 
+// function calc(firstNumber, secondNumber, operator) {
+// switch (operator) {
+  // case '+':
+    // return parseInt(firstNumber) + parseInt(secondNumber)
+  // case '-':
+    // return parseInt(firstNumber) - parseInt(secondNumber)
+  // case '*':
+    // return parseInt(firstNumber) * parseInt(secondNumber)
+  // default:
+    // return 0
+// }
 
-        return {...state}
-      }else return ({ ...state, result: calc(state.firstNumber, state.secondNumber, state.operator) })
-    }
-
-    case 'operator':
-      return { ...state, operator: payload }
-  }
-}
-
-function calc(firstNumber, secondNumber, operator) {
-  switch (operator) {
-    case '+':
-      return parseInt(firstNumber) + parseInt(secondNumber)
-    case '-':
-      return parseInt(firstNumber) - parseInt(secondNumber)
-    case '*':
-      return parseInt(firstNumber) * parseInt(secondNumber)
-    default :
-      return 0
-  }
-
-}
-   
-
-
-function Calculate() {
-  const [state, dispatch] = useReducer(numReducer, { result: 0, firstNumber: '', secondNumber: '', operator: '' })
-  return (
-    <div>
-    <h1 style={{color:'green',display:'flex',justifyContent:"center"}}>CALCULATOR</h1>    
-      <button style={{ borderColor: 'white', padding: "20px",backgroundColor:'green' ,color:'white'}} onClick={() => dispatch({ type: "result" })}>result : <h4>{state.result}</h4></button>
-      <br />
-      <br/>
-      <input style={{ borderColor: 'white', padding: "10px",backgroundColor:'green' ,color:'white' }} onChange={(e) => dispatch({ type: "firstNumber", payload: e.target.value })}></input>
-      <input style={{ borderColor: 'white', padding: "10px",backgroundColor:'green' ,color:'white' }} onChange={(e) => dispatch({ type: "secondNumber", payload: e.target.value})}></input>
-      <br />
-      <p> {state.firstNumber},{state.secondNumber},{state.operator} </p>
-      <br />
-      
-      <button  type= "button"style={{ borderColor: 'white',padding: '10px',backgroundColor:'green' ,color:'white' }} onClick={() => dispatch({ type: "operator", payload: '+' })}>+</button >
-      <button type= "button" style={{ borderColor: 'white',padding: '10px',backgroundColor:'green' ,color:'white' }} onClick={() => dispatch({ type: "operaror", payload: '-' })}>-</button >
-      <button type= "button" style={{ borderColor: 'white',padding: '10px',backgroundColor:'green' ,color:'white' }} onClick={() => dispatch({ type: "operator", payload: '*' })}>*</button >
-      <br />
-
-      <br />
-      <button type= "button" style={{ borderColor: 'white', padding: "20px" ,backgroundColor:'green' ,color:'white'}} onClick={() => dispatch({ type:'result' })}>=</button >
-
-    </div>
-  )
-}
+// }
+//  
+// 
+// 
+// function Calculate() {
+// const [state, dispatch] = useReducer(numReducer, { result: 0, firstNumber: '', secondNumber: '', operator: '' })
+// return (
+// <div>
+{/* <h1 style={{color:'green',display:'flex',justifyContent:"center"}}>CALCULATOR</h1>     */ }
+{/* <button style={{ borderColor: 'white', padding: "20px",backgroundColor:'green' ,color:'white'}} onClick={() => dispatch({ type: "result" })}>result : <h4>{state.result}</h4></button> */ }
+{/* <br /> */ }
+{/* <br/> */ }
+{/* <input style={{ borderColor: 'white', padding: "10px",backgroundColor:'green' ,color:'white' }} onChange={(e) => dispatch({ type: "firstNumber", payload: e.target.value })}></input> */ }
+{/* <input style={{ borderColor: 'white', padding: "10px",backgroundColor:'green' ,color:'white' }} onChange={(e) => dispatch({ type: "secondNumber", payload: e.target.value})}></input> */ }
+{/* <br /> */ }
+{/* <p> {state.firstNumber},{state.secondNumber},{state.operator} </p> */ }
+{/* <br /> */ }
+{/*        */ }
+{/* <button  type= "button"style={{ borderColor: 'white',padding: '10px',backgroundColor:'green' ,color:'white' }} onClick={() => dispatch({ type: "operator", payload: '+' })}>+</button > */ }
+{/* <button type= "button" style={{ borderColor: 'white',padding: '10px',backgroundColor:'green' ,color:'white' }} onClick={() => dispatch({ type: "operaror", payload: '-' })}>-</button > */ }
+{/* <button type= "button" style={{ borderColor: 'white',padding: '10px',backgroundColor:'green' ,color:'white' }} onClick={() => dispatch({ type: "operator", payload: '*' })}>*</button > */ }
+{/* <br /> */ }
+{/*  */ }
+{/* <br /> */ }
+{/* <button type= "button" style={{ borderColor: 'white', padding: "20px" ,backgroundColor:'green' ,color:'white'}} onClick={() => dispatch({ type:'result' })}>=</button > */ }
+{/*  */ }
+    // {/* </div> */}
+  // )
+// }
+//
+//
+// export default Calculate
 
 
-export default Calculate
+
+
+
+
+
+
+
+
+

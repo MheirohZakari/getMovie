@@ -1,5 +1,12 @@
+import { children, createContext } from "react";
 import { useState, useEffect, useReducer } from "react";
 import endpoint from "../API/endpoint";
+
+
+export   const MoviesContext = createContext()
+
+
+
 
 //API
 
@@ -40,15 +47,8 @@ const movieReducer = (state = reducerState, action) => {
 }
 
 
+export const MoviesProvider = ({ children }) => {
 
-
-
-export const useHomeFetch = () => {
-    // const [searchTerm, setSearchTerm] = useState('');
-    // const [state, setState] = useState(initialState);
-    // const [loading, setLoading] = useState(false);
-    // const [error, setError] = useState(false);
-    // const [isLoadingMore, setIsLoadingMore] = useState(false);
     const [state, dispatch] = useReducer(movieReducer, reducerState)
 
     const fetchMovies = async (page, searchTerm = '') => {
@@ -64,7 +64,7 @@ export const useHomeFetch = () => {
             //     results:
             //         page > 1 ? [...prev.results, ...movies.results] : [...movies.results]
             // }));
-            const newMovies = { ...state.movies, results: page > 1 ? [...state.movies.results, ...movies.results] : [...movies.results] };
+            const newMovies = { ...state.movies, results: page > 1 ? [...state.movies.results, ...movies.results] : [...movies.results] }
             console.log({ newMovies })
             dispatch({ type: actions.movies_successful, payload: newMovies })
         } catch (err) {
@@ -108,10 +108,14 @@ export const useHomeFetch = () => {
     // useEffect(()=>{
     //     if(!searchTerm) sessionStorage.setItem('homeState',JSON.stringify(state))
     // },[searchTerm,state]);
-
-
-    return { state, dispatch };
+ 
+    const value = {state,dispatch}
+ 
+    return <MoviesContext.Provider value={value}>
+        {children}
+    </MoviesContext.Provider>;
 }
+
 
 
 
